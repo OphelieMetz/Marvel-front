@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Comics = () => {
   const [comicsArray, setComicsArray] = useState();
