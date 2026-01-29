@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  font-family: Mask-Reg;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+/* HEADER */
+/* HEADER */
+
+header {
+  height: 90px;
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: black;
+}
+
+header img {
+  height: 50px;
+}
+
+.headerContent {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.navButton {
+  font-family: Mask-Reg, sans-serif;
+  font-size: 30px;
+  text-decoration: none;
+  padding: 20px;
+}
+.navButton:hover {
+  transition: box-shadow 0.4s ease-in-out;
+  background-color: red;
+  opacity: 0.6;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 20px grey;
+}
+
+/* HOME */
+/* HOME */
+/* HOME */
+
+.homepage {
+  position: relative;
+}
+
+.marvelBackground {
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.33;
+  z-index: 2;
+}
+
+.homepageWelcome {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Mask-Reg;
+  font-size: 80px;
+  z-index: 3;
+}

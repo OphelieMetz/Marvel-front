@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
 
-const Characters = () => {
-  const [charactersArray, setCharactersArray] = useState();
+const Comics = () => {
+  const [comicsArray, setComicsArray] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=YE6wlfKKzZmRvMKj",
+          "https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=YE6wlfKKzZmRvMKj",
         );
-        setCharactersArray(response.data);
+        setComicsArray(response.data);
         console.log(response.data);
 
         setIsLoading(false);
@@ -25,4 +24,4 @@ const Characters = () => {
   return isLoading ? <p>En chargement...</p> : <div></div>;
 };
 
-export default Characters;
+export default Comics;
