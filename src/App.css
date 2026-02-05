@@ -79,3 +79,51 @@ nav {
   font-size: 80px;
   z-index: 3;
 }
+
+/* FOOTER */
+/* FOOTER */
+/* FOOTER */
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-family: Mask-Reg;
+}
+
+/* CHARACTERS PAGE */
+/* CHARACTERS PAGE */
+/* CHARACTERS PAGE */
+
+.charactersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 200px;
+  background-color: darkred;
+  padding: 15px;
+}
+
+.charactersImage {
+  object-fit: cover;
+  height: 200px;
+  width: 150px;
+}
+
+.charactersName {
+  background-color: darkred;
+  font-family: Sunday-Reg, sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+}

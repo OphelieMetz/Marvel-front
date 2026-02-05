@@ -8,11 +8,8 @@ const Comics = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=YE6wlfKKzZmRvMKj",
-        );
-        setComicsArray(response.data);
-        console.log(response.data);
+        const { data } = await axios.get("http://localhost:3000/comics");
+        setComicsArray(data.results);
 
         setIsLoading(false);
       } catch (error) {
@@ -22,7 +19,30 @@ const Comics = () => {
     fetchData();
   }, []);
 
-  return isLoading ? <p>En chargement...</p> : <div></div>;
+  return isLoading ? (
+    <p>En chargement...</p>
+  ) : (
+    <div className="wrapper">
+      <div className="charactersList">
+        {comicsArray.map((comics) => {
+          return (
+            <div className="characterCard">
+              <div key={comics._id}>
+                <img
+                  src={comics.thumbnail.path + "." + comics.thumbnail.extension}
+                  alt=""
+                  className="charactersImage"
+                />
+              </div>
+              <div key={comics._id} className="charactersName">
+                {comics.title}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Comics;

@@ -23,14 +23,14 @@ function App() {
     <Router>
       <Header />
 
-      <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/characters" element={<Characters />} />
         <Route path="/comics" element={<Comics />} />
         <Route path="/favoris" element={<Favoris />} />
-        <Route path="/card" element={<Card />} />
+        <Route path="/card/:id" element={<Card />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
