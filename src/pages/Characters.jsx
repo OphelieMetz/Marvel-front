@@ -1,17 +1,18 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-/* import { useNavigate } from "react-router-dom"; */
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-/* const navigate = useNavigate(); */
-
-const Characters = () => {
+const Characters = ({ searchCharacter, setSearchCharacter }) => {
   const [charactersArray, setCharactersArray] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/characters");
+        const { data } = await axios.get(
+          `http://localhost:3000/characters?name=${searchCharacter}`,
+        );
 
         setCharactersArray(data.results);
 
@@ -21,7 +22,7 @@ const Characters = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [searchCharacter]);
 
   return isLoading ? (
     <div className="wrapper">
@@ -29,16 +30,29 @@ const Characters = () => {
     </div>
   ) : (
     <div className="wrapper">
+      <input
+        className="search"
+        type="search"
+        placeholder="Rechercher un personnage"
+        value={searchCharacter}
+        onChange={(event) => {
+          setSearchCharacter(event.target.value);
+        }}
+      />
+
       <div className="charactersList">
         {charactersArray.map((character) => {
           return (
-            <div
-              className="characterCard"
-              /*  onClick={() => {
-                navigate("/card/:id");
-              }} */
-            >
+            <Link className="characterCard" to={`/card/${character._id}`}>
               <div key={character._id}>
+                <i
+                  class={"fa-regular fa-star"}
+                  /* class={"test" ? "fa-regular fa-star" : "fa-solid fa-star"} */
+                  /*   onClick={() => {
+                    addFavorites();
+                  }} */
+                ></i>
+
                 <img
                   src={
                     character.thumbnail.path +
@@ -52,7 +66,7 @@ const Characters = () => {
               <div key={character._id} className="charactersName">
                 {character.name}
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

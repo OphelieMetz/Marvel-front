@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Comics = () => {
   const [comicsArray, setComicsArray] = useState();
