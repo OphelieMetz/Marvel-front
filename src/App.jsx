@@ -20,12 +20,11 @@ function App() {
   const [searchCharacter, setSearchCharacter] = useState("");
   const [searchComic, setSearchComic] = useState("");
 
-  const addFavorites = () => {
-    setFavorites(() => {
-      const newTab = [...favorites];
-      newTab.push(character._id || comics._id);
-      localStorage.setItem(favorites);
-    });
+  const addFavorites = (id) => {
+    const newTab = [...favorites];
+    newTab.push(id);
+    Cookies.set(favorites, favorites, { expires: 7 });
+    setFavorites(newTab);
   };
 
   return (
@@ -38,8 +37,8 @@ function App() {
           element={
             <Characters
               addFavorites={addFavorites}
-              search={searchCharacter}
-              setSearch={setSearchCharacter}
+              searchCharacter={searchCharacter}
+              setSearchCharacter={setSearchCharacter}
             />
           }
         />
@@ -48,12 +47,21 @@ function App() {
           element={
             <Comics
               addFavorites={addFavorites}
-              search={searchComic}
-              setSearch={setSearchComic}
+              searchComic={searchComic}
+              setSearchComic={setSearchComic}
             />
           }
         />
-        <Route path="/favoris" element={<Favoris />} />
+        <Route
+          path="/favoris"
+          element={
+            <Favoris
+              addFavorites={addFavorites}
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
+          }
+        />
         <Route path="/card/:id" element={<Card />} />
       </Routes>
       <Footer />

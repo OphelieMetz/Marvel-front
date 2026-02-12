@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 const Card = () => {
   const [cardArray, setCardArray] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [comics, setComics] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,6 +16,19 @@ const Card = () => {
         setCardArray(data);
 
         setIsLoading(false);
+      } catch (error) {
+        console.log(error, "not loaded");
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3000/comics/${id}`);
+
+        setComics(data);
       } catch (error) {
         console.log(error, "not loaded");
       }

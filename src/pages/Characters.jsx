@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const Characters = ({ searchCharacter, setSearchCharacter }) => {
+const Characters = ({
+  searchCharacter,
+  setSearchCharacter,
+  addFavorites,
+  favorites,
+  setFavorites,
+}) => {
   const [charactersArray, setCharactersArray] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,7 +17,7 @@ const Characters = ({ searchCharacter, setSearchCharacter }) => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/characters?name=${searchCharacter}`,
+          `http://localhost:3000/characters?name=${searchCharacter ? searchCharacter : ""}`,
         );
 
         setCharactersArray(data.results);
@@ -43,14 +49,18 @@ const Characters = ({ searchCharacter, setSearchCharacter }) => {
       <div className="charactersList">
         {charactersArray.map((character) => {
           return (
-            <Link className="characterCard" to={`/card/${character._id}`}>
-              <div key={character._id}>
+            <Link
+              key={character._id}
+              className="characterCard"
+              to={`/card/${character._id}`}
+            >
+              <div>
                 <i
-                  class={"fa-regular fa-star"}
+                  className={"fa-regular fa-star"}
                   /* class={"test" ? "fa-regular fa-star" : "fa-solid fa-star"} */
-                  /*   onClick={() => {
-                    addFavorites();
-                  }} */
+                  onClick={() => {
+                    addFavorites(character._id);
+                  }}
                 ></i>
 
                 <img
